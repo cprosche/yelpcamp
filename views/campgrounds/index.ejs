@@ -4,19 +4,27 @@
 <div class="mb-3">
   <a href="/campgrounds/new" class="btn btn-primary">Add Campground</a>
 </div>
-<% for (let campground of campgrounds) { %>
-<div class="card mb-3">
-  <img src="<%= campground.image %>" class="card-img-top img-fluid" alt="..." />
-  <div class="card-body">
-    <h5 class="card-title"><%= campground.title %></h5>
-    <p class="card-text"><%= campground.location %></p>
-    <p class="card-text"><%= campground.description %></p>
-    <p class="card-text">
-      <small class="text-muted">$<%= campground.price %></small>
-    </p>
-    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">
-      View Campground
-    </a>
+<div class="row">
+  <% for (let campground of campgrounds) { %>
+  <div class="col-6">
+    <div class="card mb-3">
+      <img
+        src="<%= campground.image %>"
+        class="card-img-top img-fluid"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title"><%= campground.title %></h5>
+        <p class="card-text"><%= campground.location %></p>
+        <p class="card-text"><%= campground.description %></p>
+        <p class="card-text">
+          <small class="text-muted">$<%= campground.price %></small>
+        </p>
+        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">
+          View Campground
+        </a>
+      </div>
+    </div>
   </div>
+  <% } %>
 </div>
-<% } %>
