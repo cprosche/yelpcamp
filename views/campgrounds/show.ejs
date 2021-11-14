@@ -18,9 +18,11 @@
         <h5 class="card-title"><%= campground.title %></h5>
         <p class="card-text"><%= campground.location %></p>
         <p class="card-text"><%= campground.description %></p>
+        <p class="card-text">Submitted by <%= campground.author.username %></p>
         <p class="card-text">
           <small class="text-muted">$<%= campground.price %></small>
         </p>
+        <% if (currentUser && campground.author.equals(currentUser._id) ) { %>
         <a
           href="/campgrounds/<%= campground._id %>/edit"
           class="btn btn-primary mb-3"
@@ -33,6 +35,7 @@
         >
           <button class="btn btn-danger">Delete Campground</button>
         </form>
+        <% } %>
       </div>
     </div>
   </div>
