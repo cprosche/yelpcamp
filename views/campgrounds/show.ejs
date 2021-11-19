@@ -41,6 +41,7 @@
   </div>
 
   <div class="col-6">
+    <% if (currentUser) { %>
     <h2>Leave A Review</h2>
     <form
       action="/campgrounds/<%= campground._id %>/reviews"
@@ -74,18 +75,26 @@
       </div>
       <button class="btn btn-success">Submit Review</button>
     </form>
+    <% } else { %>
+    <div class="mb-3">
+      <a href="/login" class="btn btn-light">Login To Leave A Review</a>
+    </div>
+    <% } %> <% for(let review of campground.reviews){ %>
 
-    <% for(let review of campground.reviews){ %>
     <div class="card mb-3">
       <div class="card-body">
+        <p class="card-subtitle mb-2">By <%= review.author.username %></p>
         <h5 class="card-title">Rating: <%= review.rating %></h5>
         <p class="card-text"><%= review.body %></p>
+
+        <% if (currentUser && review.author.equals(currentUser._id) ) { %>
         <form
           action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=delete"
           method="post"
         >
           <button href="#" class="btn btn-sm btn-danger">Delete Review</button>
         </form>
+        <% } %>
       </div>
     </div>
     <% } %>
