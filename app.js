@@ -100,5 +100,5 @@ app.use((err, req, res, next) => {
 
 // this stays at the bottom
 app.listen(3000, () => {
-    console.log("Live on port 3000");
+    console.log("Live on port 3000: http://localhost:3000");
 })

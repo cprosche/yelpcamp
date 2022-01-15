@@ -10,32 +10,34 @@ const { storage } = require("../cloudinary");
 const upload = multer({ storage });
 
 router
-    .route("/")
-    .get(campgroundsController.index)
-    .post(
-        isLoggedIn,
-        validateCampground,
-        campgroundsController.createCampground
-    );
+  .route("/")
+  .get(campgroundsController.index)
+  .post(
+    isLoggedIn,
+    upload.array("image"),
+    validateCampground,
+    campgroundsController.createCampground
+  );
 
 router.get("/new", isLoggedIn, campgroundsController.renderNewForm);
 
 router
-    .route("/:id")
-    .get(campgroundsController.renderCampgroundDetails)
-    .put(
-        isLoggedIn,
-        isAuthor,
-        validateCampground,
-        campgroundsController.saveEditCampground
-    )
-    .delete(isLoggedIn, campgroundsController.deleteCampground);
-
-router.get(
-    "/:id/edit",
+  .route("/:id")
+  .get(campgroundsController.renderCampgroundDetails)
+  .put(
     isLoggedIn,
     isAuthor,
-    campgroundsController.renderEditCampground
+    upload.array("image"),
+    validateCampground,
+    campgroundsController.saveEditCampground
+  )
+  .delete(isLoggedIn, campgroundsController.deleteCampground);
+
+router.get(
+  "/:id/edit",
+  isLoggedIn,
+  isAuthor,
+  campgroundsController.renderEditCampground
 );
 
 module.exports = router;
