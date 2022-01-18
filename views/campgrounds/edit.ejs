@@ -2,7 +2,7 @@
 
 <div class="row">
   <h1 class="text-center mb-3">Edit Campground</h1>
-  <div class="col-6 offset-3">
+  <div class="col-12 col-lg-6 offset-0 offset-lg-3">
     <form
       action="/campgrounds/<%= campground._id %>?_method=put"
       method="post"
@@ -47,17 +47,6 @@
         <span class="input-group-text">.00</span>
       </div>
       <div class="mb-3">
-        <label for="image" class="form-label">Image URL</label>
-        <input
-          type="text"
-          id="image"
-          name="campground[image]"
-          class="form-control"
-          value="<%= campground.image %>"
-          required
-        />
-      </div>
-      <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea
           type="text"
@@ -67,8 +56,18 @@
           rows="7"
           required
         >
-<%= campground.description %></textarea
+<%= campground.description %> </textarea
         >
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Add Images</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          class="form-control"
+          multiple
+        />
       </div>
       <button class="btn btn-success">Save Campground Changes</button>
     </form>
