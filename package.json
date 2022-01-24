@@ -40,5 +40,8 @@
         "tabWidth": 2,
         "semi": true,
         "singleQuote": false
+    },
+    "engine": {
+        "node": "=12.22.9"
     }
 }
