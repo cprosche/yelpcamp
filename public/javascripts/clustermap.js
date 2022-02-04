@@ -34,13 +34,13 @@ map.on("load", () => {
       "circle-color": [
         "step",
         ["get", "point_count"],
-        "#51bbd6",
-        100,
-        "#f1f075",
-        750,
-        "#f28cb1"
+        "red",
+        10,
+        "orange",
+        30,
+        "yellow"
       ],
-      "circle-radius": ["step", ["get", "point_count"], 20, 100, 30, 750, 40]
+      "circle-radius": ["step", ["get", "point_count"], 20, 10, 30, 30, 40]
     }
   });
 
@@ -92,9 +92,8 @@ map.on("load", () => {
   // the location of the feature, with
   // description HTML from its properties.
   map.on("click", "unclustered-point", (e) => {
+    const { popupMarkup } = e.features[0].properties.popupMarkup;
     const coordinates = e.features[0].geometry.coordinates.slice();
-    const mag = e.features[0].properties.mag;
-    const tsunami = e.features[0].properties.tsunami === 1 ? "yes" : "no";
 
     // Ensure that if the map is zoomed out such that
     // multiple copies of the feature are visible, the
@@ -103,10 +102,7 @@ map.on("load", () => {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
 
-    new mapboxgl.Popup()
-      .setLngLat(coordinates)
-      .setHTML(`magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`)
-      .addTo(map);
+    new mapboxgl.Popup().setLngLat(coordinates).setHTML(popupMarkup).addTo(map);
   });
 
   map.on("mouseenter", "clusters", () => {
