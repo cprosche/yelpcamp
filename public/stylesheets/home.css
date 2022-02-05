@@ -1,0 +1,13 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .3)), url(/img/home-bg.jpg);
+    background-size: cover;
+    background-position: bottom center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+main {
+    color: white;
+    text-align: center;
+}
