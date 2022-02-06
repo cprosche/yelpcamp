@@ -166,6 +166,7 @@ app.use((err, req, res, next) => {
 });
 
 // this stays at the bottom
-app.listen(3000, () => {
-  console.log("Live on port 3000: http://localhost:3000");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Live on port ${port}: http://localhost:${port}`);
 });
